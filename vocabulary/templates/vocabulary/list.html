@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocabulary List</title>
+</head>
+<body>
+    <h1>TOPIK 1 Vocabulary List</h1>
+    <ul>
+        {% for vocab in vocabularies %}
+            <li>
+                <strong>{{ vocab.korean_word }}</strong>: {{ vocab.english_translation }}
+                {% if vocab.example_sentence %}
+                    <br>Example: {{ vocab.example_sentence }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

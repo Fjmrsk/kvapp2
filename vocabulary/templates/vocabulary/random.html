@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Vocabulary</title>
+</head>
+<body>
+    <h1>ランダム単語表示</h1>
+    {% if vocab %}
+        <p><strong>韓国語:</strong> {{ vocab.korean_word }}</p>
+        <p><strong>英訳:</strong> {{ vocab.english_translation }}</p>
+        {% if vocab.example_sentence %}
+            <p><strong>例文:</strong> {{ vocab.example_sentence }}</p>
+        {% endif %}
+    {% else %}
+        <p>単語データが登録されていません。</p>
+    {% endif %}
+    <button onclick="window.location.reload();">更新</button>
+    <button id="speakButton">発音を再生</button>
+
+    <script>
+        document.getElementById('speakButton').addEventListener('click', function() {
+            const utterance = new SpeechSynthesisUtterance("{{ vocab.korean_word }}");
+            utterance.lang = 'ko-KR'; // 韓国語
+            window.speechSynthesis.speak(utterance);
+        });
+    </script>
+</body>
+</html>
